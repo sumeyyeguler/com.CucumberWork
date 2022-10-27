@@ -5,47 +5,43 @@ import io.cucumber.java.en.Then;
 import org.junit.Assert;
 import pages.AlloverPage;
 import utilities.ConfigReader;
-import utilities.Driver;
 
 public class AlloverStepDefinitions {
-    AlloverPage alloverPage = new AlloverPage();
+    AlloverPage alloverPage=new AlloverPage();
 
-    @Then("Sign in yazisina tiklar")
+    @Then("sign in yazisina tiklar")
     public void sign_in_yazisina_tiklar() {
-     alloverPage.homePageSignIn.click();
+    alloverPage.homePageSignIn.click();
     }
-
     @Then("gecerli username girer")
     public void gecerli_username_girer() {
-   alloverPage.signInEmail.sendKeys(ConfigReader.getProperty("alloverValidEmail"));
+        alloverPage.signInEmail.sendKeys(ConfigReader.getProperty("alloverValidEmail"));
     }
-
     @Then("gecerli password girer")
     public void gecerli_password_girer() {
-       alloverPage.signInPassword.sendKeys(ConfigReader.getProperty("alloverValidPassword"));
+        alloverPage.signInPassword.sendKeys(ConfigReader.getProperty("alloverValidPassword"));
     }
-    @Then("Sign in butonuna basar")
-    public void login_butonuna_basar() {
-     alloverPage.signInButton.click();
-        try {
-            Thread.sleep(2);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+    @Then("sign in butonuna tiklar")
+    public void sign_in_butonuna_tiklar() {
+    alloverPage.signInButton.click();
     }
     @Then("sayfaya giris yaptigini kontrol eder")
     public void sayfaya_giris_yaptigini_kontrol_eder() {
-        String expectedUrl="https://allovercommerce.com/";
-       String actualUrl=Driver.getDriver().getCurrentUrl();
-       Assert.assertEquals(expectedUrl,actualUrl);
+        Assert.assertTrue(alloverPage.welcomeToAllover.isDisplayed());
     }
 
-    @Then("kullanici {int} sn bekler")
-    public void kullaniciSnBekler(int beklemeSuresi) {
-        try {
-            Thread.sleep(beklemeSuresi);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+    @And("gecersiz username olarak {string} girer")
+    public void gecersizUsernameOlarakGirer(String username) {
+        alloverPage.signInEmail.sendKeys(username);
+    }
+
+    @And("gecersiz password olarak {string} girer")
+    public void gecersizPasswordOlarakGirer(String password) {
+        alloverPage.signInPassword.sendKeys(password);
+    }
+
+    @And("sayfaya giris yapilamadigini test eder")
+    public void sayfayaGirisYapilamadiginiTestEder() {
+        Assert.assertTrue(alloverPage.signInButton.isDisplayed());
     }
 }

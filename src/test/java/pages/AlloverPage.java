@@ -23,6 +23,9 @@ public class AlloverPage {
     @FindBy(xpath = "(//*[text()='Sign In'])[2]")
     public WebElement signInButton;
 
+    @FindBy (xpath = "//*[text()='WELCOME TO ALLOVER COMMERCE...']")
+    public WebElement welcomeToAllover;
+
 
 
 }
