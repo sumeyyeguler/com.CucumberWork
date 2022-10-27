@@ -77,4 +77,13 @@ public class AmazonStepDefinitons {
         String arananKelime=istenenKelime;
         Assert.assertTrue(amazonPage.searchResultText.getText().contains(arananKelime));
     }
+
+    @Then("kullanici {int} sn bekler")
+    public void kullaniciSnBekler(int beklemeSuresi) {
+        try {
+            Thread.sleep(beklemeSuresi);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
