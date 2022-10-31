@@ -6,14 +6,17 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        plugin={"html:target/cucumber-reports.html"},
+        plugin={"html:target/cucumber-reports.html",
+                "json:target/json-reports/cucumber.json",
+                "junit:target/xml-report/cucumber.xml" },
         features = "src/test/resources/features",
-        glue="src/test/java/stepDefinitions",
-        tags= "@herokuappsc",
+        glue = "stepDefinitions",
+        tags = "@wip", // iki tag'ı aynı anda çalıştırmak isterseniz "@gp1 or @gp2"
         dryRun = false
+
 )
 
-public class Runner {
+public class TestRunner {
     /*
     Bir framework'de bir tek Runner class'i yeterli olabilir
     Runner class'inda class body'sinde hic bir sey olmaz
@@ -30,4 +33,5 @@ public class Runner {
    deyRun=false yazdigimizda testlerimizi calistirir
 
      */
+
 }

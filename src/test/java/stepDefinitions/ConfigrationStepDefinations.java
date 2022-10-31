@@ -20,4 +20,5 @@ public class ConfigrationStepDefinations {
         Assert.assertTrue(url.contains(istenenURL));
     }
 
+
 }
